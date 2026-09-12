@@ -34,7 +34,13 @@ drag(12);assert.equal(root.dataset.on,'false','short tug must not toggle');
 drag(60,true);assert.equal(root.dataset.on,'false','canceled tug must not toggle');
 handle.emit('click',{detail:0});tick(1000);assert.equal(root.dataset.on,'true');assert.equal(root.dataset.theme,'cool');
 assert.equal(nodes['.login-card'].inert,false);
-for(let i=0;i<4;i++)handle.emit('click',{detail:1});tick(1000);assert.equal(root.dataset.on,'true');assert.equal(root.dataset.theme,'warm');
+for(const expected of ['rose','mint','lavender','pink','teal','lime','peach','cherry','gold','ice','warm']) {
+  handle.emit('click',{detail:1});
+  assert.equal(root.dataset.on,'false');
+  handle.emit('click',{detail:1});tick(100);
+  assert.equal(root.dataset.on,'true');
+  assert.equal(root.dataset.theme,expected,'All twelve palettes cycle and wrap');
+}
 doc.activeElement=nodes['#password'];tick(100);assert.equal(root.dataset.expression,'password');
 assert.match(pupils[0].style.transform,/translate\(-/,'look away when entering password');
 nodes['#login-form'].emit('submit',{preventDefault(){}});tick(100);assert.equal(root.dataset.expression,'error');

@@ -13,7 +13,7 @@
   const password = document.querySelector('#password');
   const toast = document.querySelector('.toast');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const themes = ['warm', 'cool', 'rose'];
+  const themes = ['warm', 'cool', 'rose', 'mint', 'lavender', 'pink', 'teal', 'lime', 'peach', 'cherry', 'gold', 'ice'];
   let theme = 0, on = true, dragging = false, pointerId = null;
   let pullX = 0, pullY = 0, velocityX = 0, velocityY = 0;
   let startX = 0, startY = 0, scale = 1, suppressClick = false;
